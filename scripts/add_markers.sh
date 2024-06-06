@@ -27,5 +27,5 @@ sleep 12 # Longer wait time for to allow visualization to load
 xterm -hold -e "cd $(pwd)/../..;
 source devel/setup.bash;
 rosparam load $(pwd)/../config/marker_config.yaml;
-rosrun add_markers test_add_markers.cpp " &
+rosrun add_markers add_markers_test " &
 
