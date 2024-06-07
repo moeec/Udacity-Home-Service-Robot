@@ -5,7 +5,9 @@
 
 
 
-/* follows basic structure found here http://wiki.ros.org/rviz/Tutorials/Markers%3A%20Basic%20Shapes*/
+/* follows basic structure found here http://wiki.ros.org/rviz/Tutorials/Markers%3A%20Basic%20Shapes
+http://wiki.ros.org/rviz/DisplayTypes/Marker*/
+
 /* Initial Setup */
 
 // integer indicator marker_reached_state = 0;
