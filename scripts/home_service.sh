@@ -11,7 +11,8 @@ sleep 10
 # launch amcl_demo.launch for localization
 xterm -e "cd $(pwd)/../..;
 source devel/setup.bash;
-roslaunch turtlebot_gazebo amcl_demo.launch map_file:=$(pwd)/../../src/map/home_service_map.yaml " &
+export TURTLEBOT_GAZEBO_MAP_FILE=$(pwd)/../map/home_service.yaml
+roslaunch turtlebot_gazebo amcl_demo.launch " &
 
 sleep 5
 
@@ -26,12 +27,12 @@ sleep 20 # Longer wait time for to allow visualization to load
 xterm -e "cd $(pwd)/../..;
 source devel/setup.bash;
 rosparam load $(pwd)/../config/marker_config.yaml;
-rosrun add_markers add_markers " &
+rosrun add_markers add_markers_test " &
 
 sleep 5
 
 # launch pick_objects node
-xterm -e "cd $(pwd)/../..;
+xterm -hold -e "cd $(pwd)/../..;
 source devel/setup.bash;
 rosparam load $(pwd)/../config/marker_config.yaml;
 rosrun pick_objects pick_objects" &

@@ -17,6 +17,7 @@ roslaunch turtlebot_gazebo amcl_demo.launch " &
 
 sleep 5
 
+# launch rviz for visualization
 xterm -e "cd $(pwd)/../..;
 source devel/setup.bash;
 roslaunch add_markers home_service_rviz_config.launch rviz_config_file:=$(pwd)/../rvizConfig/home_service.rviz" &
@@ -24,7 +25,7 @@ roslaunch add_markers home_service_rviz_config.launch rviz_config_file:=$(pwd)/.
 sleep 12 # Longer wait time for to allow visualization to load
 
 # launch add_markers node
-xterm -hold -e "cd $(pwd)/../..;
+xterm -e "cd $(pwd)/../..;
 source devel/setup.bash;
 rosparam load $(pwd)/../config/marker_config.yaml;
 rosrun add_markers add_markers_test " &
