@@ -205,3 +205,11 @@ target_link_libraries(${PROJECT_NAME}_node
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(pick_objects src/pick_objects.cpp)
+target_link_libraries(pick_objects ${catkin_LIBRARIES})
+
+add_executable(pick_objects_test src/test_pick_objects.cpp)
+target_link_libraries(pick_objects_test ${catkin_LIBRARIES})
