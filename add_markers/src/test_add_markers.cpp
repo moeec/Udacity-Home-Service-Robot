@@ -7,12 +7,12 @@ int main( int argc, char** argv )
   ros::init(argc, argv, "add_markers");
 
 // Creates a NodeHandle for communication with the ROS system and sets the loop rate to 5 Hz(5 times per second).
-  ros::NodeHandle nh;
+  ros::NodeHandle n;
   ros::Rate r(1); // Loop at 1Hz
 
 /* Sets up a Publisher to publish marker messages on the visualization_marker topic and a 
 Subscriber to subscribe to the /goal_reached topic, with goalReachCallback as the callback function.*/
-  ros::Publisher marker_pub = nh.advertise<visualization_msgs::Marker>("visualization_marker", 1);
+  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 
 // counter used for marker
   uint32_t marker_counter = 0;
@@ -61,7 +61,7 @@ Subscriber to subscribe to the /goal_reached topic, with goalReachCallback as th
         
           for (size_t i = 0; i < params.size(); ++i) 
           {
-              nh.getParam(params[i], *pose_values[i]);
+              n.getParam(params[i], *pose_values[i]);
           } 
 
         // Publish marker and increment marker_counter
@@ -95,7 +95,7 @@ Subscriber to subscribe to the /goal_reached topic, with goalReachCallback as th
         
           for (size_t i = 0; i < params.size(); ++i) 
           {
-              nh.getParam(params[i], *pose_values[i]);
+              n.getParam(params[i], *pose_values[i]);
           }
          
         }
