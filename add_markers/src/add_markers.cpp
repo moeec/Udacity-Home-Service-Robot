@@ -5,6 +5,7 @@
 
 
 
+/*http://wiki.ros.org/rviz/Tutorials/MarkersBasicShapes*/
 /* Initial Setup */
 
 // integer indicator marker_reached_state = 0;
@@ -33,13 +34,13 @@ int main( int argc, char** argv )
   ros::init(argc, argv, "add_markers");
 
 // Creates a NodeHandle for communication with the ROS system and sets the loop rate to 5 Hz(5 times per second).
-  ros::NodeHandle nh;
+  ros::NodeHandle n;
   ros::Rate r(5);
 
 /* Sets up a Publisher to publish marker messages on the visualization_marker topic and a 
 Subscriber to subscribe to the /goal_reached topic, with goalReachCallback as the callback function.*/
-  ros::Publisher marker_pub = nh.advertise<visualization_msgs::Marker>("visualization_marker", 1);
-  ros::Subscriber odom_sub = nh.subscribe("/goal_reached", 1, goalReachedCallback);
+  ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
+  ros::Subscriber odom_sub = n.subscribe("/goal_reached", 1, goalReachedCallback);
 
 // Initializes a boolean done to indicate if the process is complete and sets the initial shape type to a cube.
   bool done = false;
@@ -83,13 +84,13 @@ case 3 adds a marker at the drop-off location and sets done to true.
   switch (goal_reached_state) {
     case 0: // publish pick-up marker
         marker.action = visualization_msgs::Marker::ADD; // sets action (ADD) that will be performed on the marker; 
-        nh.getParam("/pick_up_location/tx", marker.pose.position.x);
-        nh.getParam("/pick_up_location/ty", marker.pose.position.y);
-        nh.getParam("/pick_up_location/tz", marker.pose.position.z);
-        nh.getParam("/pick_up_location/qx", marker.pose.orientation.x);
-        nh.getParam("/pick_up_location/qy", marker.pose.orientation.y);
-        nh.getParam("/pick_up_location/qz", marker.pose.orientation.z);
-        nh.getParam("/pick_up_location/qw", marker.pose.orientation.w);
+        n.getParam("/pick_up_location/tx", marker.pose.position.x);
+        n.getParam("/pick_up_location/ty", marker.pose.position.y);
+        n.getParam("/pick_up_location/tz", marker.pose.position.z);
+        n.getParam("/pick_up_location/qx", marker.pose.orientation.x);
+        n.getParam("/pick_up_location/qy", marker.pose.orientation.y);
+        n.getParam("/pick_up_location/qz", marker.pose.orientation.z);
+        n.getParam("/pick_up_location/qw", marker.pose.orientation.w);
         break;
 
     case 1: // robot has reached pickup site, pick-up marker is deleted 
@@ -104,13 +105,13 @@ case 3 adds a marker at the drop-off location and sets done to true.
     case 3: //  publishing drop-off marker
         sleep(5);
         marker.action = visualization_msgs::Marker::ADD;
-        nh.getParam("/drop_off_location/tx", marker.pose.position.x);
-        nh.getParam("/drop_off_location/ty", marker.pose.position.y);
-        nh.getParam("/drop_off_location/tz", marker.pose.position.z);
-        nh.getParam("/drop_off_location/qx", marker.pose.orientation.x);
-        nh.getParam("/drop_off_location/qy", marker.pose.orientation.y);
-        nh.getParam("/drop_off_location/qz", marker.pose.orientation.z);
-        nh.getParam("/drop_off_location/qw", marker.pose.orientation.w);
+        n.getParam("/drop_off_location/tx", marker.pose.position.x);
+        n.getParam("/drop_off_location/ty", marker.pose.position.y);
+        n.getParam("/drop_off_location/tz", marker.pose.position.z);
+        n.getParam("/drop_off_location/qx", marker.pose.orientation.x);
+        n.getParam("/drop_off_location/qy", marker.pose.orientation.y);
+        n.getParam("/drop_off_location/qz", marker.pose.orientation.z);
+        n.getParam("/drop_off_location/qw", marker.pose.orientation.w);
         done = true;
         break;
 }
