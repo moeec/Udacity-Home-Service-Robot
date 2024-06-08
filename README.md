@@ -93,7 +93,7 @@ Within `~/catkin_ws/src/` clone folders of this repository:
 
 ```
 cd ~/catkin_ws/src/
-git clone https://github.com/moeec/Udacity-Home-Service-Robot-Final-Project.git
+git clone https://github.com/moeec/Udacity-Home-Service-Robot.git
 ```
 
 Install dependencies:
@@ -119,4 +119,26 @@ Go back to catkin workspace and build it
 cd ~/catkin_ws/
 catkin_make
 ```
+
+### Launcing Project
+
+For full Home Service Robot 
+
+src/scripts/home_service.sh
+
+For Add Markers
+
+src/scripts/add_markers.sh
+
+For Test Slam 
+
+src/scripts/test_slam.sh
+
+
+
+
+
+
+
+
 

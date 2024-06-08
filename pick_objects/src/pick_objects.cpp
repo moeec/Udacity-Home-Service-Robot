@@ -1,8 +1,10 @@
 #include <ros/ros.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
+#include <std_msgs/UInt8.h>
  
-// Define a client for to send goal requests to the move_base server through a SimpleActionClient
+// Action client created to send goal requests to the move_base server via SimpleActionClient
+// Based off of https://wiki.ros.org/actionlib_tutorials/Tutorials/SimpleActionClient
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 int main(int argc, char** argv)
@@ -11,13 +13,13 @@ int main(int argc, char** argv)
   ros::init(argc, argv, "pick_objects");
 
   // NodeHandle created interacting with the ROS system. This provides a way to create publishers, subscribers, services, and other interactions with the ROS master. 
-  ros::NodeHandle nh;
+  ros::NodeHandle n;
 
   // tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
 
-  // This line sets up a publisher that will publish UInt8 messages to the topic "/goal_reached" with a queue size of 1.
-   ros::Publisher goal_reach_pub = n.advertise<std_msgs::UInt8>("/goal_reached!!!", 1);
+  // Publisher setup to broadcast when robot reaches goal marker
+  ros::Publisher goal_reached_pub = n.advertise<std_msgs::UInt8>("/goal_reached", 1);
 
   // Wait 5 sec for move_base action server to come up
   while(!ac.waitForServer(ros::Duration(5.0)))
@@ -68,7 +70,7 @@ int main(int argc, char** argv)
     ROS_INFO("Robot has reached PICK-UP location!");
     ROS_INFO("Package being picked up");
     status_msg.data = 1;
-    goal_reach_pub.publish(status_msg);
+    goal_reached_pub.publish(status_msg);
   }
   else 
   {
@@ -112,7 +114,7 @@ int main(int argc, char** argv)
     ROS_INFO("Hooray! dropping off package");
 // Publish that goal has been reached status
     status_msg.data = 3;  
-    goal_reach_pub.publish(status_msg);
+    goal_reached_pub.publish(status_msg);
   } 
   else
   {
