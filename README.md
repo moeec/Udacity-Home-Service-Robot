@@ -128,7 +128,7 @@ cd ~/catkin_ws/
 catkin_make
 ```
 
-### Launcing Project
+### Launching Project
 
 For full Home Service Robot 
 
