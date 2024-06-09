@@ -1,7 +1,15 @@
 # Udacity-Home-Service-Robot-Final-Project
 Udacity Nanodegree Robotics Software Engineer
 
+<p align="center"><img src="./images/Home_Service_Robot.png"></p>    
+
 Final project for Udacity's Robotics Software Engineer Nanodegree Program
+
+### Prerequisites
+
+* Ubuntu 16.04 OS with default make (>=4.1) and g++/gcc (>=5.4) packages
+* Gazebo >= 7.0
+* ROS Kinetic
 
 **Project Goals**
 
@@ -124,6 +132,7 @@ catkin_make
 
 For full Home Service Robot 
 
+```
 src/scripts/home_service.sh
 
 For Add Markers
@@ -133,7 +142,7 @@ src/scripts/add_markers.sh
 For Test Slam 
 
 src/scripts/test_slam.sh
-
+```
 
 
 
